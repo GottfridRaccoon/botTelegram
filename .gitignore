@@ -1,0 +1,7 @@
+/logs
+/img
+/config
+/node_modules/**/*
+/sertificate
+.vscode/
+yarn.lock
