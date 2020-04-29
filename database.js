@@ -1,5 +1,5 @@
-const mariadb = require('mariadb');
-const config = require('config');
+import mariadb from 'mariadb';
+import config from 'config';
 const username = config.get('database.user');
 const passwd = config.get('database.password');
 const hostname = config.get('database.host');
@@ -12,7 +12,7 @@ let pool = mariadb.createPool({
     database: 'bot',
     charset: 'utf8mb4'
 });
-module.exports = function mariaQuery() {
+export default function database() {
     pool.getConnection()
         .then(conn => {
             console.log("Подключилось, идендификатор подключения : " + conn.threadId);
