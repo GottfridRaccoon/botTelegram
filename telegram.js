@@ -5,26 +5,31 @@ import parse_list from "./parse_list.js"
 const token = config.get("telegram.token");
 const gottfrid_bot = new Telegram(token, { polling: true });
 let note = [];
-import Process_module from "./process_module.js"
+//import Process_module from "./process_module.js"
 //let Event = require('./event_array.js')
 //const mariaQuery = require('./database.js')
 //let queryMaria = new mariaQuery()
 //let DB = require('./link.js')
 //let link  =new DB()
 //let eventArray = new Event()
-
-const signal = config.get("signal.value")
-    //let idprocess = Number(process.pid)
-const process_module = new Process_module(process.pid);
+import { setConnection } from "./client_proc.js"
+//const signal = config.get("signal.value")
+//let idprocess = Number(process.pid)
+//const process_module = new Process_module();
+let signal = config.get("signal.value")
 process.send(process.pid)
-process.on('message', code => console.log(`message to core ${code}`))
+process.on('message', code => console.log(`message at core ${code}`))
 process.on('exit',
     code => console.log(`I'm exiting with code : ${code}`))
 
 
+setInterval(() => {
+    setConnection(process.pid.toString())
+}, signal / 2)
 
 
-process_module.setSignalProcess(process.pid)
+
+//setInterval(() => { process_module.Process.setSignalProcess(1) }, signal);
 
 //export default function App() {
 
@@ -32,6 +37,7 @@ let messageID = 0;
 let messageUpdateTimeOut = 5000;
 let messageUpdateLast = 0;
 //let messages = {}
+
 
 
 

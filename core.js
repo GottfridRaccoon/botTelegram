@@ -8,23 +8,24 @@ import Queue from './queue.js'
 import child_process from 'child_process'
 //import parse_list from "./parse_list.js"
 //запрос из ядра на получение сообщений, 
-import Process_mod from "./process_module.js"
+//import process from "./process_module.js"
+import { serverProc } from "./server_process.js"
 import repl from "repl"
 const queue = new Queue();
-const process_module = new Process_mod()
+//const process_module = new Process(null, 0)
 let processList = []
 import config from "config"
 const signal = config.get("signal.value")
-
-//let app = new App();
-//console.dir(app.messages)
-//Query();
-//setInterval(() => {
-//if (app.messages != undefined) {
-//   queue.put(app.messages)
-//   console.log(queue.pick())
-//}
-//}, 2000)
+    //let Process = new process()
+    //let app = new App();
+    //console.dir(app.messages)
+    //Query();
+    //setInterval(() => {
+    //if (app.messages != undefined) {
+    //   queue.put(app.messages)
+    //   console.log(queue.pick())
+    //}
+    //}, 2000)
 
 
 //   parse_list(app.messages)
@@ -38,7 +39,11 @@ telegram_child.on('exit', code => `Telegram_process exited. Code : ${code}`);
 console.log(`i am a core, my process id is : ${process.pid}`);
 
 
-process_module.getSignalProcess(telegram_child.pid)
+new serverProc(telegram_child.pid)
+
+//Process.getSignalProcess(telegram_child.pid)
+
+
 
 //process_module.killProcess(telegram_child.pid)
 
