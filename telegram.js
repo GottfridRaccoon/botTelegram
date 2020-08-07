@@ -12,19 +12,21 @@ let note = [];
 //let DB = require('./link.js')
 //let link  =new DB()
 //let eventArray = new Event()
-import { setConnection } from "./client_proc.js"
+import  setConnection  from "./client_proc.js"
 //const signal = config.get("signal.value")
 //let idprocess = Number(process.pid)
 //const process_module = new Process_module();
 let signal = config.get("signal.value")
+let connect = new setConnection()
 process.send(process.pid)
 process.on('message', code => console.log(`message at core ${code}`))
 process.on('exit',
     code => console.log(`I'm exiting with code : ${code}`))
+    
 
 
 setInterval(() => {
-    setConnection(process.pid.toString())
+    connect.setConnect(process.pid.toString())
 }, signal / 2)
 
 

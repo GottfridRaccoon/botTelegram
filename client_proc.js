@@ -4,7 +4,10 @@
  client.setEncoding("utf-8")
 
 
- let setConnection = value => {
+ export default class setConnection  {
+     constructor(){}
+
+     setConnect(value){
 
      client.connect(8214, "localhost", () => {
 
@@ -14,8 +17,8 @@
 
      })
      client.on("data", data => console.log(data))
-     client.on("close", () => console.log("connection has been closed"))
+         //client.on("close", () => console.log("connection has been closed"))
+     }
 
  }
 
- export { setConnection }

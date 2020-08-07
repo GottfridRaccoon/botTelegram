@@ -12,7 +12,7 @@ export default async function getValue(queue) {
 
         } else {
             eventParse[k] = await queue[k]
-                //console.dir(`k = ${k}   queue = ${queue} quek =${queue[k]}`)
+            console.dir(`k = ${k}   queue = ${queue} quek =${queue[k]}`)
 
         }
         console.dir('event  value ' + k + " : " + eventParse[k])

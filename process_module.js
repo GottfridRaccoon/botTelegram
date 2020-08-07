@@ -10,9 +10,8 @@ const signal = config.get("signal.value")
 export default class Process {
 
 
-    constructor(processId, processValue) {
-        this.processId = processId;
-        this.processValue = processValue;
+    constructor() {
+
 
 
     }
@@ -35,9 +34,8 @@ export default class Process {
         //    this.readsignal = item
         // }
 
-    interval = setInterval(() => {
-        console.log(this.processConst)
-    }, signal / 4);
+
+
 
 
     // sett = setInterval(this.setSignalProcess, signal)

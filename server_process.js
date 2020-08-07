@@ -1,74 +1,16 @@
 //import net from "net"
 
-import net from "net"
+
 import config from "config"
 const signal = config.get("signal.value");
-let Signal
 
+import  setConnection  from "./client_proc.js"
+let connect  = new setConnection()
 
+setInterval(() => {
+    connect.setConnect(process.pid.toString())
+}, signal / 2)
 
-class serverProc {
-    constructor(valuePid) {
-        this.ValuePid = valuePid // В конструктор добавить поле signal 
-    }
-}
-
-// перенести в ядро
-
-
-
-class getSignal extends serverProc {
-    constructor(valuePid) {
-        super(valuePid)
-
-    }
-    checkSignal() {
-        setInterval(() => {
-            if (typeof(Signal) == "undefined" || Signal == 0) {
-                console.dir("no signal") // посылать сигнал ядру про тото тото раотает или нет
-            } else {
-                console.dir(`Signal give at ${Signal}`)
-                console.dir(Signal)
-                Signal = 0
-            }
-        }, signal)
-    }
-
-
-}
-
-let signalGet = new getSignal()
-signalGet.checkSignal()
-
-
-
-
-const server = net.createServer(conn => {
-    //let buff = new Buffer("utf-8")
-
-    conn.setEncoding("utf-8")
-        //  process.stdin.resume()
-
-
-
-    /* сначала в буффер, потом в пайп 
-    погуглить как удалить конеретную запись в пайпе
-    */
-
-
-
-    conn.on("data", data => {
-        Signal = data
-
-        console.log(data)
-
-
-    })
-})
-server.listen(8214)
-
-
-export { serverProc }
 
 
 //server.on("connection", () => {
